@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hello
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: hello
+  template:
+    metadata:
+      labels:
+        name: hello
+        tier: backend
+        type: golang
+    spec:
+      containers:
+        - name: hello
+          image: gsviec/hello:v1
+          env:
+          - name: FINISH_TIME
+            value: 60
+          - name: DATABASE
+            value: mysql
+          - name: DB_HOST
+            value: 127.0.0.1
+          imagePullPolicy: IfNotPresent
+          resources:
+            limits:
+          securityContext:
+            privileged: true
+          terminationMessagePath: /dev/termination-log
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: registrypullsecret
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
