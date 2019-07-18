@@ -19,11 +19,11 @@ spec:
           image: gsviec/hello:v1
           env:
           - name: FINISH_TIME
-            value: 60
+            value: "60"
           - name: DATABASE
             value: mysql
           - name: DB_HOST
-            value: 127.0.0.1
+            value: "127.0.0.1"
           imagePullPolicy: IfNotPresent
           resources:
             limits:
