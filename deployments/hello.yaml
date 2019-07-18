@@ -17,6 +17,7 @@ spec:
       containers:
         - name: hello
           image: gsviec/hello:v1
+          command: ['docker-entrypoint.sh', 'start']
           env:
           - name: FINISH_TIME
             value: "60"
